@@ -1,0 +1,9 @@
+{
+  "name": "eslint-remote-tester-compare-action",
+  "version": "0.0.1",
+  "description": "GitHub Action for running eslint-remote-tester in comparison mode",
+  "main": "dist/index.js",
+  "repository": "https://github.com/AriPerkkio/eslint-remote-tester-compare-action",
+  "author": "Ari Perkkio <ari.perkkio@gmail.com>",
+  "license": "MIT"
+}
