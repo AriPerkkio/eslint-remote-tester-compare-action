@@ -15,35 +15,5 @@ inputs:
     default: "yarn install"
 
 runs:
-  using: "composite"
-  steps:
-    - name: "Initialize repository for first run"
-      run: ${{ inputs.repository-initialize-command }}
-
-    - name: "Parse PR repository"
-      run: node dist/get-pull-requests-repository.js
-      id: getPrBranch
-
-    - name: "#1 run of eslint-remote-tester"
-      run: node dist/run-tester.js
-
-    - name: "Save eslint-remote-tester cache"
-      run: node dist/save-cache.js
-
-    - name: "Checkout to PR repository and branch"
-      uses: actions/checkout@v2
-      with:
-        repository: ${{ steps.getPrBranch.outputs.repository }}
-        ref: ${{ steps.getPrBranch.outputs.branch }}
-
-    - name: "Initialize repository for second run"
-      run: ${{ inputs.repository-initialize-command }}
-
-    - name: "Restore eslint-remote-tester cache"
-      run: node dist/restore-cache.js
-
-    - name: "#2 run of eslint-remote-tester"
-      run: node dist/run-tester.js
-
-    - name: "Post results"
-      run: node dist/post-results.js
+  using: "node12"
+  main: "dist/index.js"
