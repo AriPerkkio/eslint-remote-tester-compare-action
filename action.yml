@@ -1,0 +1,49 @@
+name: "eslint-remote-tester PR comparator"
+description: "Run eslint-remote-tester in comparison mode for pull requests"
+
+inputs:
+  eslint-remote-tester-config:
+    description: "Path to eslint-remote-tester.config.js"
+    reqired: false
+    default: "eslint-remote-tester.config.js"
+  github-token:
+    description: "GitHub token"
+    required: true
+  repository-initialize-command:
+    description: "Command used to initialize project after checkout"
+    required: false
+    default: "yarn install"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Initialize repository for first run"
+      run: ${{ inputs.repository-initialize-command }}
+
+    - name: "Parse PR repository"
+      run: node dist/get-pull-requests-repository.js
+      id: getPrBranch
+
+    - name: "#1 run of eslint-remote-tester"
+      run: node dist/run-tester.js
+
+    - name: "Save eslint-remote-tester cache"
+      run: node dist/save-cache.js
+
+    - name: "Checkout to PR repository and branch"
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ steps.getPrBranch.outputs.repository }}
+        ref: ${{ steps.getPrBranch.outputs.branch }}
+
+    - name: "Initialize repository for second run"
+      run: ${{ inputs.repository-initialize-command }}
+
+    - name: "Restore eslint-remote-tester cache"
+      run: node dist/restore-cache.js
+
+    - name: "#2 run of eslint-remote-tester"
+      run: node dist/run-tester.js
+
+    - name: "Post results"
+      run: node dist/post-results.js
