@@ -1,19 +1,28 @@
-name: "eslint-remote-tester PR comparator"
-description: "Run eslint-remote-tester in comparison mode for pull requests"
+name: 'eslint-remote-tester PR comparator'
+description: 'Run eslint-remote-tester in comparison mode for pull requests'
 
+# TODO user permissions
 inputs:
   eslint-remote-tester-config:
-    description: "Path to eslint-remote-tester.config.js"
+    description: 'Path to eslint-remote-tester.config.js'
     reqired: false
-    default: "eslint-remote-tester.config.js"
+    default: 'eslint-remote-tester.config.js'
   github-token:
-    description: "GitHub token"
+    description: 'GitHub token'
     required: true
   repository-initialize-command:
-    description: "Command used to initialize project after checkout"
+    description: 'Command used to initialize project after checkout'
     required: false
-    default: "yarn install"
+    default: 'yarn install'
+  allowed-associations:
+    description: Comment author associations allowed (e.g. '["OWNER", "COLLABORATOR"]')
+    required: false
+    default: '["OWNER"]'
+  max-result-count:
+    description: Maximum result count to be posted in result comment. Can be override with maxResultCount option in comment.
+    required: false
+    default: 50
 
 runs:
-  using: "node12"
-  main: "dist/index.js"
+  using: 'node12'
+  main: 'dist/index.js'
