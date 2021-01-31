@@ -5993,7 +5993,11 @@ async function run() {
       import_github2.context.issue.repo,
       getBaseBranch()
     ].join("/");
-    await core3.group(`Initializing base repository ${baseRepository}`, () => import_exec2.exec(repositoryInitializeCommand));
+    await core3.group(`Initializing base repository ${baseRepository}`, async () => {
+      for (const command of repositoryInitializeCommand.split("\n")) {
+        await import_exec2.exec(command);
+      }
+    });
     const {
       RESULT_COMPARISON_CACHE,
       RESULTS_COMPARISON_CACHE_LOCATION
@@ -6007,7 +6011,11 @@ async function run() {
       await import_exec2.exec("git fetch downstream");
       await import_exec2.exec(`git checkout downstream/${pullRequest.branch}`);
     });
-    await core3.group(`Initializing PR repository ${pullRequest.repository}/${pullRequest.branch}`, () => import_exec2.exec(repositoryInitializeCommand));
+    await core3.group(`Initializing PR repository ${pullRequest.repository}/${pullRequest.branch}`, async () => {
+      for (const command of repositoryInitializeCommand.split("\n")) {
+        await import_exec2.exec(command);
+      }
+    });
     import_fs3.default.renameSync(import_path3.default.resolve(CACHE_TEMP_LOCATION), import_path3.default.resolve(RESULTS_COMPARISON_CACHE_LOCATION));
     await core3.group("#2 run of eslint-remote-tester", () => runTester(usersEslintRemoteTesterConfig, configurationFromComment));
     const comparisonResults = import_fs3.default.readFileSync(COMPARISON_RESULTS_TMP, "utf8");
