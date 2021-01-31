@@ -62,8 +62,13 @@ async function run() {
             getBaseBranch(),
         ].join('/');
 
-        await core.group(`Initializing base repository ${baseRepository}`, () =>
-            exec(repositoryInitializeCommand)
+        await core.group(
+            `Initializing base repository ${baseRepository}`,
+            async () => {
+                for (const command of repositoryInitializeCommand.split('\n')) {
+                    await exec(command);
+                }
+            }
         );
 
         // Peer dependencies are now available
@@ -96,7 +101,11 @@ async function run() {
 
         await core.group(
             `Initializing PR repository ${pullRequest.repository}/${pullRequest.branch}`,
-            () => exec(repositoryInitializeCommand)
+            async () => {
+                for (const command of repositoryInitializeCommand.split('\n')) {
+                    await exec(command);
+                }
+            }
         );
 
         // Restore cache
