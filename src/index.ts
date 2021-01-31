@@ -18,6 +18,9 @@ const TRIGGER_KEYWORD = '@github-actions eslint-remote-tester compare';
 
 async function run() {
     try {
+        // Run only for pull request comments
+        if (!isPullRequest()) return;
+
         // Ignore comments which do not start with trigger keyword
         const comment = getComment();
         if (!comment.startsWith(TRIGGER_KEYWORD)) return;
@@ -143,6 +146,15 @@ function getComment(): string {
     if (!context.payload.comment) return '';
 
     return context.payload.comment.body || '';
+}
+
+/**
+ * Check whether event is from pull request
+ */
+function isPullRequest(): boolean {
+    if (!context.payload.issue) return false;
+
+    return Boolean(context.payload.issue.pull_request);
 }
 
 /**

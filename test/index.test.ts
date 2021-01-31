@@ -14,7 +14,10 @@ jest.mock('../src/github-client', () => ({
 }));
 
 const KEYWORD = '@github-actions eslint-remote-tester compare';
-const createComment = (body: string) => ({ payload: { comment: { body } } });
+const issue = { pull_request: {} };
+const createComment = (body: string) => ({
+    payload: { comment: { body }, issue },
+});
 
 async function runEntryPoint() {
     jest.resetModules();
@@ -41,8 +44,24 @@ describe('entrypoint', () => {
         });
     });
 
+    test('exits when event is not from pull request', async () => {
+        mockGithub.mockReturnValue({
+            context: {
+                ...createComment(KEYWORD),
+                issue: { issue_comment: {} },
+            },
+        });
+
+        await runEntryPoint();
+        expect(
+            mockGithubClient.getCollaboratorPermissionLevel
+        ).not.toHaveBeenCalledWith();
+    });
+
     test('exits when comment does not start with keyword', async () => {
-        mockGithub.mockReturnValue({ context: createComment('Hello world') });
+        mockGithub.mockReturnValue({
+            context: createComment('Hello world'),
+        });
 
         await runEntryPoint();
         expect(
