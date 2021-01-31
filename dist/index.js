@@ -5968,6 +5968,8 @@ ${RESULT_PARSER_TO_COMPARE_TEMPLATE.markdown("removed", limitedRemoved)}
 var TRIGGER_KEYWORD = "@github-actions eslint-remote-tester compare";
 async function run() {
   try {
+    if (!isPullRequest())
+      return;
     const comment = getComment();
     if (!comment.startsWith(TRIGGER_KEYWORD))
       return;
@@ -6024,6 +6026,11 @@ function getComment() {
   if (!import_github2.context.payload.comment)
     return "";
   return import_github2.context.payload.comment.body || "";
+}
+function isPullRequest() {
+  if (!import_github2.context.payload.issue)
+    return false;
+  return Boolean(import_github2.context.payload.issue.pull_request);
 }
 async function checkPermission() {
   const permission = await github_client_default.getCollaboratorPermissionLevel();
