@@ -5907,7 +5907,6 @@ async function runTester(configLocation, configurationFromComment) {
     ...DEFAULT_CONFIG_REQUIRED
   }, configurationFromComment);
   import_fs2.default.writeFileSync(INTERNAL_CONFIG, CONFIGURATION_TEMPLATE(config, usersConfigLocation, configurationFromComment.onComplete));
-  await import_exec.exec(`cat ./${INTERNAL_CONFIG}`);
   const {validateConfig} = requirePeerDependency("eslint-remote-tester");
   await validateConfig(config, false);
   await import_exec.exec(`${ESLINT_REMOTE_TESTER_BIN} --config ./${INTERNAL_CONFIG}`, [], {ignoreReturnCode: true});

@@ -110,8 +110,6 @@ export default async function runTester(
         )
     );
 
-    await exec(`cat ./${INTERNAL_CONFIG}`);
-
     // Validate configuration before run
     const { validateConfig } = requirePeerDependency('eslint-remote-tester');
     await validateConfig(config, false);
