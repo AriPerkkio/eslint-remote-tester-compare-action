@@ -118,7 +118,10 @@ export default async function runTester(
     await exec(
         `${ESLINT_REMOTE_TESTER_BIN} --config ./${INTERNAL_CONFIG}`,
         [],
-        { ignoreReturnCode: true }
+        {
+            ignoreReturnCode: true,
+            env: { ...process.env, NODE_OPTIONS: '--max_old_space_size=5120' },
+        }
     );
 }
 
