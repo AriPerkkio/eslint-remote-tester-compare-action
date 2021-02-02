@@ -5909,7 +5909,10 @@ async function runTester(configLocation, configurationFromComment) {
   import_fs2.default.writeFileSync(INTERNAL_CONFIG, CONFIGURATION_TEMPLATE(config, usersConfigLocation, configurationFromComment.onComplete));
   const {validateConfig} = requirePeerDependency("eslint-remote-tester");
   await validateConfig(config, false);
-  await import_exec.exec(`${ESLINT_REMOTE_TESTER_BIN} --config ./${INTERNAL_CONFIG}`, [], {ignoreReturnCode: true});
+  await import_exec.exec(`${ESLINT_REMOTE_TESTER_BIN} --config ./${INTERNAL_CONFIG}`, [], {
+    ignoreReturnCode: true,
+    env: {...process.env, NODE_OPTIONS: "--max_old_space_size=5120"}
+  });
 }
 function mergeConfigurations(config, configurationFromComment) {
   return {

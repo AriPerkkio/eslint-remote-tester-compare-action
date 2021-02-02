@@ -33,12 +33,15 @@ describe('run-tester', () => {
     test('runs eslint-remote-tester with internal configuration', async () => {
         await runTester(EXISTING_CONFIG, {});
 
-        expect(
-            exec
-        ).toHaveBeenCalledWith(
+        expect(exec).toHaveBeenCalledWith(
             `${ESLINT_REMOTE_TESTER_BIN} --config ${EXPECTED_RUN_CONFIG}`,
             [],
-            { ignoreReturnCode: true }
+            {
+                ignoreReturnCode: true,
+                env: expect.objectContaining({
+                    NODE_OPTIONS: '--max_old_space_size=5120',
+                }),
+            }
         );
     });
 
