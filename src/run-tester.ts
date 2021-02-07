@@ -41,7 +41,7 @@ const fs = require('fs');
 
 module.exports = {
     ...${JSON.stringify(configuration, null, 4)},
-    onComplete: async function onCompare(results, comparisonResults) {
+    onComplete: async function onComplete(results, comparisonResults) {
         fs.writeFileSync('${COMPARISON_RESULTS_TMP}', JSON.stringify(comparisonResults || {}));
 
         // User provided onComplete is injected here if present
