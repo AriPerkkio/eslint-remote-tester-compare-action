@@ -24,6 +24,7 @@ function generateResult(postfix: number): Result {
         extension: `extension-${postfix}`,
         source: `source-${postfix}`,
         error: `error-${postfix}`,
+        __internalHash: `__internalHash-${postfix}` as Result['__internalHash'],
     };
 }
 
@@ -47,6 +48,52 @@ describe('COMMENT_TEMPLATE', () => {
 
             No changes detected.
 
+            "
+        `);
+    });
+
+    test('"no changes" is shown when one only comparison type has data', () => {
+        const comment = COMMENT_TEMPLATE(
+            [],
+            removed.slice(0, 1),
+            1,
+            BASE_REPOSITORY,
+            PR_REPOSITORY
+        );
+
+        expect(comment).toMatchInlineSnapshot(`
+            "## Comparison results
+
+            Compared branches:
+
+            - Base: \`owner/repository/master\`
+            - PR: \`contributor/repository/pr\`
+
+            Detected 0 new ESLint reports and 1 reports to be not present.
+
+
+            <details>
+            <summary>Click to expand</summary>
+
+            # Added:
+            No changes
+
+            # Removed:
+            ## Rule: rule-3
+
+            -   Message: \`message-3\`
+            -   Path: \`path-3\`
+            -   [Link](link-3)
+
+            \`\`\`extension-3
+            source-3
+            \`\`\`
+
+            \`\`\`
+            error-3
+            \`\`\`
+
+            </details>
             "
         `);
     });
@@ -146,7 +193,6 @@ describe('COMMENT_TEMPLATE', () => {
             error-5
             \`\`\`
 
-
             </details>
             "
         `);
@@ -234,7 +280,6 @@ describe('COMMENT_TEMPLATE', () => {
             \`\`\`
             error-4
             \`\`\`
-
 
             </details>
             "

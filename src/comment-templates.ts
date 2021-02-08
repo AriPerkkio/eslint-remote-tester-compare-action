@@ -32,6 +32,7 @@ export const COMMENT_TEMPLATE = (
     const { RESULT_PARSER_TO_COMPARE_TEMPLATE } = requirePeerDependency(
         'eslint-remote-tester'
     );
+    const template = RESULT_PARSER_TO_COMPARE_TEMPLATE.markdown;
 
     const hasResults = added.length + removed.length > 0;
     const limitReached = (added.length + removed.length) / 2 > maxResultCount;
@@ -58,9 +59,10 @@ ${hasResults ?
 <details>
 <summary>Click to expand</summary>
 
-${RESULT_PARSER_TO_COMPARE_TEMPLATE.markdown('added', limitedAdded)}
-${RESULT_PARSER_TO_COMPARE_TEMPLATE.markdown('removed', limitedRemoved)}
-
+${template.header('added')}
+${limitedAdded.length > 0 ? limitedAdded.map(template.results).join('\n') : 'No changes\n'}
+${template.header('removed')}
+${limitedRemoved.length > 0 ? limitedRemoved.map(template.results).join('\n') : 'No changes\n'}
 </details>
 ` : ''}`;
 };

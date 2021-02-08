@@ -39,7 +39,7 @@ Any text below configuration is ignored. Feel free to use this for discussion.
 
 | eslint-remote-tester-compare-action | eslint-remote-tester |
 | :---------------------------------: | :------------------: |
-|                `v1`                 |   `0.6.0` or above   |
+|                `v1`                 |   `1.0.1` or above   |
 
 ## Configuration:
 
