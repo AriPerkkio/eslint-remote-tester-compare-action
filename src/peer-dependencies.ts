@@ -21,7 +21,7 @@ interface DependencyInfo {
 // Changes to minVersion's require major release
 const DEPENDENCY_TO_INFO: Record<PeerDependency, DependencyInfo> = {
     'eslint-remote-tester': {
-        minVersion: '0.6.0',
+        minVersion: '1.0.1',
         exportPath: 'eslint-remote-tester/dist/exports-for-compare-action',
         packageJsonPath: 'eslint-remote-tester/package.json',
         bin: 'eslint-remote-tester',

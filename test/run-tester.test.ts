@@ -88,7 +88,7 @@ describe('run-tester', () => {
                 \\"updateComparisonReference\\": true,
                 \\"cache\\": false
             },
-                onComplete: async function onCompare(results, comparisonResults) {
+                onComplete: async function onComplete(results, comparisonResults) {
                     fs.writeFileSync('/tmp/comparison-results.json', JSON.stringify(comparisonResults || {}));
 
                     // User provided onComplete is injected here if present
@@ -134,7 +134,7 @@ describe('run-tester', () => {
                 \\"updateComparisonReference\\": true,
                 \\"cache\\": false
             },
-                onComplete: async function onCompare(results, comparisonResults) {
+                onComplete: async function onComplete(results, comparisonResults) {
                     fs.writeFileSync('/tmp/comparison-results.json', JSON.stringify(comparisonResults || {}));
 
                     // User provided onComplete is injected here if present
@@ -171,7 +171,7 @@ describe('run-tester', () => {
 
         expect(readRunConfig(false).onComplete.toString())
             .toMatchInlineSnapshot(`
-            "async function onCompare(results, comparisonResults) {
+            "async function onComplete(results, comparisonResults) {
                     fs.writeFileSync('/tmp/comparison-results.json', JSON.stringify(comparisonResults || {}));
 
                     // User provided onComplete is injected here if present
@@ -186,7 +186,7 @@ describe('run-tester', () => {
 
         expect(sanitizeStackTrace(readRunConfig(false).onComplete.toString()))
             .toMatchInlineSnapshot(`
-            "async function onCompare(results, comparisonResults) {
+            "async function onComplete(results, comparisonResults) {
                     fs.writeFileSync('/tmp/comparison-results.json', JSON.stringify(comparisonResults || {}));
 
                     // User provided onComplete is injected here if present
