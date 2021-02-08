@@ -78,7 +78,11 @@ async function run() {
         } = requirePeerDependency('eslint-remote-tester');
 
         await core.group('#1 run of eslint-remote-tester', () =>
-            runTester(usersEslintRemoteTesterConfig, configurationFromComment)
+            runTester(
+                usersEslintRemoteTesterConfig,
+                configurationFromComment,
+                false
+            )
         );
 
         // Save cache from git checkout
@@ -115,7 +119,11 @@ async function run() {
         );
 
         await core.group('#2 run of eslint-remote-tester', () =>
-            runTester(usersEslintRemoteTesterConfig, configurationFromComment)
+            runTester(
+                usersEslintRemoteTesterConfig,
+                configurationFromComment,
+                true
+            )
         );
 
         const comparisonResults = fs.readFileSync(
