@@ -37,7 +37,6 @@ describe('run-tester', () => {
             `${ESLINT_REMOTE_TESTER_BIN} --config ${EXPECTED_RUN_CONFIG}`,
             [],
             {
-                ignoreReturnCode: true,
                 env: expect.objectContaining({
                     NODE_OPTIONS: '--max_old_space_size=5120',
                 }),
@@ -96,6 +95,9 @@ describe('run-tester', () => {
                     // User provided onComplete is injected here if present
                     // Argument from comment overrides user-provided configuration
                     // No onComplete detected
+
+                    console.log(\\"Skipping eslint-remote-tester's render output\\");
+                    process.exit(0);
                 }
             };
             "
@@ -145,6 +147,9 @@ describe('run-tester', () => {
                     // User provided onComplete is injected here if present
                     // Argument from comment overrides user-provided configuration
                     // No onComplete detected
+
+                    console.log(\\"Skipping eslint-remote-tester's render output\\");
+                    process.exit(0);
                 }
             };
             "
@@ -188,6 +193,9 @@ describe('run-tester', () => {
                     // User provided onComplete is injected here if present
                     // Argument from comment overrides user-provided configuration
                     await (() => console.log('Hello world'))(results, comparisonResults)
+
+                    console.log(\\"Skipping eslint-remote-tester's render output\\");
+                    process.exit(0);
                 }"
         `);
     });
@@ -205,6 +213,9 @@ describe('run-tester', () => {
                     // User provided onComplete is injected here if present
                     // Argument from comment overrides user-provided configuration
                     await require('<removed>/test/eslint-remote-tester.config.2.js').onComplete(results, comparisonResults);
+
+                    console.log(\\"Skipping eslint-remote-tester's render output\\");
+                    process.exit(0);
                 }"
         `);
     });
@@ -222,6 +233,9 @@ describe('run-tester', () => {
                     // User provided onComplete is injected here if present
                     // Argument from comment overrides user-provided configuration
                     await require('<removed>/test/eslint-remote-tester.config.2.js').onComplete(results, comparisonResults);
+
+                    console.log(\\"Skipping eslint-remote-tester's render output\\");
+                    process.exit(0);
                 }"
         `);
     });

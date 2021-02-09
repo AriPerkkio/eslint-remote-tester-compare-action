@@ -5886,6 +5886,9 @@ module.exports = {
         // User provided onComplete is injected here if present
         // Argument from comment overrides user-provided configuration
         ${onCompleteFromComment ? `await (${onCompleteFromComment.toString()})(results, comparisonResults)` : configuration.onComplete ? `await require('${configurationPath}').onComplete(results, comparisonResults);` : "// No onComplete detected"}
+
+        console.log("Skipping eslint-remote-tester's render output");
+        process.exit(0);
     }
 };
 `;
@@ -5911,10 +5914,7 @@ async function runTester(configLocation, configurationFromComment, isLastRun) {
   import_fs2.default.writeFileSync(INTERNAL_CONFIG, CONFIGURATION_TEMPLATE(config, usersConfigLocation, configurationFromComment.onComplete, isLastRun));
   const {validateConfig} = requirePeerDependency("eslint-remote-tester");
   await validateConfig(config, false);
-  await import_exec.exec(`${ESLINT_REMOTE_TESTER_BIN} --config ./${INTERNAL_CONFIG}`, [], {
-    ignoreReturnCode: true,
-    env: {...process.env, NODE_OPTIONS: "--max_old_space_size=5120"}
-  });
+  await import_exec.exec(`${ESLINT_REMOTE_TESTER_BIN} --config ./${INTERNAL_CONFIG}`, [], {env: {...process.env, NODE_OPTIONS: "--max_old_space_size=5120"}});
 }
 function mergeConfigurations(config, configurationFromComment) {
   return {
