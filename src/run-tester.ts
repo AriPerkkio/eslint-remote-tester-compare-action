@@ -55,6 +55,9 @@ module.exports = {
             ? `await require('${configurationPath}').onComplete(results, comparisonResults);`
             : '// No onComplete detected'
         }
+
+        console.log("Skipping eslint-remote-tester's render output");
+        process.exit(0);
     }
 };
 `;
@@ -123,10 +126,7 @@ export default async function runTester(
     await exec(
         `${ESLINT_REMOTE_TESTER_BIN} --config ./${INTERNAL_CONFIG}`,
         [],
-        {
-            ignoreReturnCode: true,
-            env: { ...process.env, NODE_OPTIONS: '--max_old_space_size=5120' },
-        }
+        { env: { ...process.env, NODE_OPTIONS: '--max_old_space_size=5120' } }
     );
 }
 
