@@ -1,5 +1,10 @@
 name: 'eslint-remote-tester PR comparator'
 description: 'Run eslint-remote-tester in comparison mode for pull requests'
+author: 'Ari Perkkio <ari.perkkio@gmail.com>'
+
+branding:
+  icon: 'git-pull-request'
+  color: 'orange'
 
 inputs:
   eslint-remote-tester-config:
