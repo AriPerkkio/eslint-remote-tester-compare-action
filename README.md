@@ -8,6 +8,10 @@
 It compares the changes of the PR with main branch and displays the changes of ESLint reports.
 Check out the use case description from eslint-remote-tester's documentation: [Plugin maintainer making sure new PRs don't introduce new false positives](https://github.com/AriPerkkio/eslint-remote-tester#plugin-maintainer-making-sure-new-prs-dont-introduce-new-false-positives).
 
+<p align="center">
+  <img width="640" src="https://raw.githubusercontent.com/AriPerkkio/eslint-remote-tester-compare-action/HEAD/docs/demo.png">
+</p>
+
 ## Usage:
 
 Action can be activated by commenting `@github-actions eslint-remote-tester compare` in the pull request issue.
