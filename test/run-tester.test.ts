@@ -85,7 +85,7 @@ describe('run-tester', () => {
                 \\"CI\\": true,
                 \\"compare\\": true,
                 \\"updateComparisonReference\\": true,
-                \\"cache\\": false
+                \\"cache\\": true
             },
                 onComplete: async function onComplete(results, comparisonResults) {
                     if(true) {
@@ -137,7 +137,7 @@ describe('run-tester', () => {
                 \\"CI\\": true,
                 \\"compare\\": true,
                 \\"updateComparisonReference\\": true,
-                \\"cache\\": false
+                \\"cache\\": true
             },
                 onComplete: async function onComplete(results, comparisonResults) {
                     if(true) {

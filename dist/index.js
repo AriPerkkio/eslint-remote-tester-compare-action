@@ -5868,7 +5868,7 @@ var DEFAULT_CONFIG_REQUIRED = {
   CI: true,
   compare: true,
   updateComparisonReference: true,
-  cache: false
+  cache: true
 };
 var DEFAULT_CONFIG_OPTIONAL = {
   resultParser: "markdown"
@@ -6012,7 +6012,7 @@ async function run() {
     const CACHE_TEMP_LOCATION = `/tmp/${RESULT_COMPARISON_CACHE}`;
     import_fs3.default.renameSync(import_path3.default.resolve(RESULTS_COMPARISON_CACHE_LOCATION), import_path3.default.resolve(CACHE_TEMP_LOCATION));
     await core3.group(`Checkout to ${pullRequest.cloneUrl} - ${pullRequest.branch}`, async () => {
-      await import_exec2.exec("git clean -fd");
+      await import_exec2.exec("git clean -fd -e .cache-eslint-remote-tester");
       await import_exec2.exec(`git remote add downstream ${pullRequest.cloneUrl}`);
       await import_exec2.exec("git fetch downstream");
       await import_exec2.exec(`git checkout downstream/${pullRequest.branch}`);

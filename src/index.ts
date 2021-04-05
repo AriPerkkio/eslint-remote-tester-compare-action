@@ -96,7 +96,7 @@ async function run() {
             `Checkout to ${pullRequest.cloneUrl} - ${pullRequest.branch}`,
             async () => {
                 // Would be ideal to use actions/checkout but "action in action" is not supported
-                await exec('git clean -fd');
+                await exec('git clean -fd -e .cache-eslint-remote-tester');
                 await exec(`git remote add downstream ${pullRequest.cloneUrl}`);
                 await exec('git fetch downstream');
                 await exec(`git checkout downstream/${pullRequest.branch}`);

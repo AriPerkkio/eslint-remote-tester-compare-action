@@ -20,7 +20,7 @@ const DEFAULT_CONFIG_REQUIRED: ConfigToValidate = {
     CI: true,
     compare: true,
     updateComparisonReference: true,
-    cache: false,
+    cache: true,
 };
 
 /**
