@@ -45,7 +45,7 @@ Any text below configuration is ignored. Feel free to use this for discussion.
 | :---------------------------------: | :------------------: |
 |                `v1`                 |   `1.0.1` or above   |
 
-Due to [Github CI resource limitations](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources) the target repositories should not exceed **~12Gb limit**.
+Due to [Github CI resource limitations](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources) the target repositories should not exceed **~12GB limit**.
 Repositories are cached in order to keep comparison files stable between the two runs.
 
 ## Configuration:
