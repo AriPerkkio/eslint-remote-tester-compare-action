@@ -9,7 +9,7 @@ branding:
 inputs:
   eslint-remote-tester-config:
     description: 'Path to eslint-remote-tester.config.js'
-    reqired: false
+    required: false
     default: 'eslint-remote-tester.config.js'
   github-token:
     description: 'GitHub token'

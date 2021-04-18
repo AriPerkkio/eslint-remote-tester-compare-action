@@ -32,10 +32,11 @@ async function run() {
 
         await checkPermission();
 
-        const repositoryInitializeCommand = core.getInput('repository-initialize-command');
+        const repositoryInitializeCommand = core.getInput(
+            'repository-initialize-command'
+        );
         const usersEslintRemoteTesterConfig = core.getInput(
-            'eslint-remote-tester-config',
-            { required: true }
+            'eslint-remote-tester-config'
         );
 
         const {

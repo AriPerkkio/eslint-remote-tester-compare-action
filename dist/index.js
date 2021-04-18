@@ -5984,7 +5984,7 @@ async function run() {
     }
     await checkPermission();
     const repositoryInitializeCommand = core3.getInput("repository-initialize-command");
-    const usersEslintRemoteTesterConfig = core3.getInput("eslint-remote-tester-config", {required: true});
+    const usersEslintRemoteTesterConfig = core3.getInput("eslint-remote-tester-config");
     const {
       maxResultCount,
       ...configurationFromComment
