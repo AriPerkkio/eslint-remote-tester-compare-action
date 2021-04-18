@@ -6051,9 +6051,7 @@ async function checkPermission() {
   if (permission !== "admin" && permission !== "write") {
     throw new Error(`${import_github2.context.actor} does not have admin/write permission. Found permission: ${permission}`);
   }
-  const allowedAssociations = core3.getInput("allowed-associations", {
-    required: true
-  });
+  const allowedAssociations = core3.getInput("allowed-associations");
   let allowed;
   try {
     allowed = JSON.parse(allowedAssociations);

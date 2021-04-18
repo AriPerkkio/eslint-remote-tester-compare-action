@@ -188,9 +188,7 @@ async function checkPermission() {
         );
     }
 
-    const allowedAssociations = core.getInput('allowed-associations', {
-        required: true,
-    });
+    const allowedAssociations = core.getInput('allowed-associations');
 
     let allowed: string[];
     try {
