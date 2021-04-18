@@ -5983,7 +5983,7 @@ async function run() {
       throw new Error(`Event ${import_github2.context.eventName} is not supported.`);
     }
     await checkPermission();
-    const repositoryInitializeCommand = core3.getInput("repository-initialize-command", {required: true});
+    const repositoryInitializeCommand = core3.getInput("repository-initialize-command");
     const usersEslintRemoteTesterConfig = core3.getInput("eslint-remote-tester-config", {required: true});
     const {
       maxResultCount,
