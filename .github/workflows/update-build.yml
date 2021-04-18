@@ -1,0 +1,18 @@
+name: Update dist/index.js
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-update:
+    runs-on: ubuntu-latest
+    name: Update dist/index.js
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - run: yarn build
+      - name: Push updates
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore(build): update dist/index.js"
