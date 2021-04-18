@@ -10,7 +10,7 @@ interface PullRequest {
 let githubToken: string;
 
 try {
-    githubToken = core.getInput('github-token', { required: true });
+    githubToken = core.getInput('github-token');
 } catch (error) {
     core.setFailed(error.message);
 }

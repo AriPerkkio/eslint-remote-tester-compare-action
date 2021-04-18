@@ -5756,7 +5756,7 @@ var core = __toModule(require_core());
 var import_github = __toModule(require_github());
 var githubToken;
 try {
-  githubToken = core.getInput("github-token", {required: true});
+  githubToken = core.getInput("github-token");
 } catch (error2) {
   core.setFailed(error2.message);
 }
