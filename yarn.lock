@@ -1984,10 +1984,10 @@ eslint-plugin-prettier@^3.3.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-remote-tester@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-remote-tester/-/eslint-remote-tester-1.0.1.tgz#e4f28ac8a14777b634f602a58677b416687f2587"
-  integrity sha512-2o1Ko/bo/5l6p+smVYcrs1UQJkjNOEYExm3i9l004UzarqxFAjiqZZ46O1gn2A6C01LHjzQiCvmOscHi50z6Zg==
+eslint-remote-tester@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-remote-tester/-/eslint-remote-tester-1.2.0.tgz#eea8cb72b60de530b0f10a2af0d54c13e0713f95"
+  integrity sha512-VwippmgzkMbcLG3qK6JekmN1K1LfKXHVLh++xz+8jBZddWxEI+XMcZk9fOVPTMuNmJOdHogMgp/sptPfaBZC3Q==
   dependencies:
     "@babel/code-frame" "^7.12.13"
     JSONStream "^1.3.5"

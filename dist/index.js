@@ -6022,6 +6022,13 @@ async function run() {
         await import_exec2.exec(command);
       }
     });
+    console.log("CACHE_TEMP_LOCATION", CACHE_TEMP_LOCATION);
+    console.log("RESULTS_COMPARISON_CACHE_LOCATION", RESULTS_COMPARISON_CACHE_LOCATION);
+    await import_exec2.exec(`ls -la /tmp/.comparison-cache.json`);
+    await import_exec2.exec("pwd");
+    await import_exec2.exec("ls -la node_modules");
+    await import_exec2.exec("ls -la node_modules/eslint-remote-tester");
+    await import_exec2.exec("ls -la node_modules/eslint-remote-tester/.cache-eslint-remote-tester");
     import_fs3.default.renameSync(import_path3.default.resolve(CACHE_TEMP_LOCATION), import_path3.default.resolve(RESULTS_COMPARISON_CACHE_LOCATION));
     await core3.group("#2 run of eslint-remote-tester", () => runTester(usersEslintRemoteTesterConfig, configurationFromComment, true));
     const comparisonResults = import_fs3.default.readFileSync(COMPARISON_RESULTS_TMP, "utf8");

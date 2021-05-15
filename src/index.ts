@@ -110,6 +110,20 @@ async function run() {
             }
         );
 
+        console.log('CACHE_TEMP_LOCATION', CACHE_TEMP_LOCATION);
+        console.log(
+            'RESULTS_COMPARISON_CACHE_LOCATION',
+            RESULTS_COMPARISON_CACHE_LOCATION
+        );
+
+        await exec(`ls -la /tmp/.comparison-cache.json`);
+        await exec('pwd');
+        await exec('ls -la node_modules');
+        await exec('ls -la node_modules/eslint-remote-tester');
+        await exec(
+            'ls -la node_modules/eslint-remote-tester/.cache-eslint-remote-tester'
+        );
+
         // Restore cache
         fs.renameSync(
             path.resolve(CACHE_TEMP_LOCATION),

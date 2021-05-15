@@ -87,7 +87,7 @@ some unrelated text.
 `
         );
         expect(result.onComplete).toBeDefined();
-        return expect(result.onComplete!([], null)).resolves.toBe(2);
+        return expect(result.onComplete!([], null, 1)).resolves.toBe(2);
     });
 
     test('configuration is optional', () => {
