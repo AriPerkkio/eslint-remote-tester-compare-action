@@ -1,5 +1,4 @@
 import fs from 'fs';
-import path from 'path';
 import * as core from '@actions/core';
 import { exec } from '@actions/exec';
 import { context } from '@actions/github';
@@ -70,10 +69,9 @@ async function run() {
         );
 
         // Peer dependencies are now available
-        const {
-            RESULT_COMPARISON_CACHE,
-            RESULTS_COMPARISON_CACHE_LOCATION,
-        } = requirePeerDependency('eslint-remote-tester');
+        const { RESULT_COMPARISON_CACHE } = requirePeerDependency(
+            'eslint-remote-tester'
+        );
 
         await core.group('#1 run of eslint-remote-tester', () =>
             runTester(
@@ -83,18 +81,13 @@ async function run() {
             )
         );
 
-        // Save cache from git checkout
-        const CACHE_TEMP_LOCATION = `/tmp/${RESULT_COMPARISON_CACHE}`;
-        fs.renameSync(
-            path.resolve(RESULTS_COMPARISON_CACHE_LOCATION),
-            path.resolve(CACHE_TEMP_LOCATION)
-        );
-
         await core.group(
             `Checkout to ${pullRequest.cloneUrl} - ${pullRequest.branch}`,
             async () => {
                 // Would be ideal to use actions/checkout but "action in action" is not supported
-                await exec('git clean -fd -e .cache-eslint-remote-tester');
+                await exec(
+                    `git clean -fd -e .cache-eslint-remote-tester -e ${RESULT_COMPARISON_CACHE}`
+                );
                 await exec(`git remote add downstream ${pullRequest.cloneUrl}`);
                 await exec('git fetch downstream');
                 await exec(`git checkout downstream/${pullRequest.branch}`);
@@ -108,12 +101,6 @@ async function run() {
                     await exec(command);
                 }
             }
-        );
-
-        // Restore cache
-        fs.renameSync(
-            path.resolve(CACHE_TEMP_LOCATION),
-            path.resolve(RESULTS_COMPARISON_CACHE_LOCATION)
         );
 
         await core.group('#2 run of eslint-remote-tester', () =>
