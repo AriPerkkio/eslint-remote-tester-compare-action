@@ -67,8 +67,8 @@ jobs:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
               with:
-                  node-version: 12.11
-            - uses: AriPerkkio/eslint-remote-tester-compare-action@v1
+                  node-version: 16
+            - uses: AriPerkkio/eslint-remote-tester-compare-action@v2
               with:
                   allowed-associations: '["OWNER", "COLLABORATOR"]'
                   max-result-count: 100
