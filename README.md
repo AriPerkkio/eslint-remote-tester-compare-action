@@ -44,6 +44,7 @@ Any text below configuration is ignored. Feel free to use this for discussion.
 | eslint-remote-tester-compare-action | eslint-remote-tester |
 | :---------------------------------: | :------------------: |
 |                `v1`                 |   `1.0.1` or above   |
+|                `v2`                 |   `1.0.1` or above   |
 
 Due to [Github CI resource limitations](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources) the target repositories should not exceed **~12GB limit**.
 Repositories are cached in order to keep comparison files stable between the two runs.
