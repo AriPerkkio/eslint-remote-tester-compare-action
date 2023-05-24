@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:18-alpine
 
 COPY dist/index.js /index.js
 
