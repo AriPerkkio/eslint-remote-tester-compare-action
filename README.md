@@ -45,6 +45,7 @@ Any text below configuration is ignored. Feel free to use this for discussion.
 | :---------------------------------: | :------------------: |
 |                `v1`                 |   `1.0.1` or above   |
 |                `v2`                 |   `1.0.1` or above   |
+|                `v3`                 |   `1.0.1` or above   |
 
 Due to [Github CI resource limitations](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources) the target repositories should not exceed **~12GB limit**.
 Repositories are cached in order to keep comparison files stable between the two runs.
@@ -68,7 +69,7 @@ jobs:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
               with:
-                  node-version: 16
+                  node-version: 18
             - uses: AriPerkkio/eslint-remote-tester-compare-action@v2
               with:
                   allowed-associations: '["OWNER", "COLLABORATOR"]'
